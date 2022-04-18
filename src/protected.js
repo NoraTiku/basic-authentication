@@ -7,13 +7,25 @@ const  Protected = () => {
     
     const nav = useNavigate();
 
+    const redirectUserIfNotAuthenticated  = async () => {
+         try {
+             await Auth.currentAuthenticatedUser();
+         }
+
+         catch (err) {
+             nav('/Profile');
+
+
+         }
+
+
+    };
+
   useEffect(
       () => {
-        Auth.currentAuthenticatedUser().catch(
-            () => {
-                nav('/Profile')
-             }
-        );
+          redirectUserIfNotAuthenticated();
+        
+
      }, 
             []
         );
