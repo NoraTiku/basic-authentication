@@ -30,7 +30,7 @@ const Router = () => {
         <Route exact path="/" element ={<Public />}/>
         <Route exact path="/protected" element = {<Protected />} />
         <Route exact path="/profile" element={<Profile />}/>
-        <Route component={Public}/>
+        <Route element={<Public />}/>
       </Routes>
     </HashRouter>
   );
