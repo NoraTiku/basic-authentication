@@ -6,6 +6,7 @@ import Public from './Public';
 import Profile from './Profile';
 import Protected from './Protected';
 
+
 const Router = () => {
 
   const [current, setCurrent] = useState('home');

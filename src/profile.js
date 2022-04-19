@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Auth } from 'aws-amplify';
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react/legacy';
+import { Authenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+
 import Container from './Container';
+import {Button } from 'antd';
 
 const  Profile = () => {
   useEffect(() => {
@@ -24,12 +27,27 @@ const  Profile = () => {
   return (
     <Container>
       <h1>Profile</h1>
-      <h2>Username: {user.username}</h2>
+
+      <Authenticator>
+      {({ signOut, user }) => (
+        <main>
+          <h1>Hello {user.username}</h1>
+          <Button onClick={signOut}
+          type= 'primary'
+          size='large'
+          
+          >Sign out</Button>
+        </main>
+      )}
+    </Authenticator>
+     
+    { /* < h2>Username: {user.username}</h2>
       <h3>Email: {user.email}</h3>
       <h4>Phone: {user.phone_number}</h4>
-      <AmplifySignOut />
+      <AmplifySignOut /> **/}
+
     </Container>
   );
 };
 
-export default withAuthenticator(Profile);
+export default (Profile);
